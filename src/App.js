@@ -13,7 +13,7 @@ post.AddTag(new Tag.TagLong("Timestamp"));
 post.AddTag(new Tag.TagCompound("Test"));
 post.GetTag("Test").AddTag(new Tag.TagInt(5));
 
-console.log(post);
+console.log(Transformer.ToXML(post));
 
 let x = Transformer.FromJSON(`{
 	"Key": "Post",
