@@ -1,4 +1,4 @@
-import { GenerateUUID } from '../Helper';
+import Helper from './Helper';
 
 export class ASerializable {
 	constructor(uuid = null) {

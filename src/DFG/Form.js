@@ -1,4 +1,4 @@
-import { GenerateUUID } from './../Helper';
+import { GenerateUUID } from './Helper';
 import { ASerializable } from './ASerializable';
 
 export class Form extends ASerializable {
