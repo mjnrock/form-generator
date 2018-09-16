@@ -562,13 +562,13 @@ export class Transformer {
 	}
 	static FromXML(xml) {
 		let selfClosing = xml.match(
-			/<Tag(Boolean|Character|Compound|Double|Float|Int|List|Long|Short|String|Tiny)(.*?)(\/)>/gi
+			/<Tag(Boolean|Character|Compound|Double|Float|Int|List|Long|Short|String|Tiny|UUID)(.*?)(\/)>/gi
 		);
 
 		xml = xml.replace(/>(\s*)</gi, "><");
 		if (selfClosing && selfClosing.length > 0) {
 			xml = xml.replace(
-				/<Tag(Boolean|Character|Compound|Double|Float|Int|List|Long|Short|String|Tiny)(.*?)[/]*>/gi,
+				/<Tag(Boolean|Character|Compound|Double|Float|Int|List|Long|Short|String|Tiny|UUID)(.*?)[/]*>/gi,
 				function(m, tag) {
 					return m.replace(/\/>/gi, `></Tag${tag}>`);
 				}
@@ -576,7 +576,7 @@ export class Transformer {
 		}
 
 		xml = xml.replace(
-			/<Tag(Boolean|Character|Compound|Double|Float|Int|List|Long|Short|String|Tiny)(.*?)>/gi,
+			/<Tag(Boolean|Character|Compound|Double|Float|Int|List|Long|Short|String|Tiny|UUID)(.*?)>/gi,
 			function(m, tag, attrs) {
 				let type = `"Type": "Tag${tag}"`;
 				attrs = attrs.replace(
@@ -599,7 +599,7 @@ export class Transformer {
 			}
 		);
 		xml = xml.replace(
-			/<\/Tag(Boolean|Character|Compound|Double|Float|Int|List|Long|Short|String|Tiny)>/gi,
+			/<\/Tag(Boolean|Character|Compound|Double|Float|Int|List|Long|Short|String|Tiny|UUID)>/gi,
 			"]}"
 		);
 
@@ -610,7 +610,7 @@ export class Transformer {
 		xml = xml.replace(/]/gi, "]").replace(//gi, ","); // the blank space is NOT whitespace, it's the (unrendered) DELETE CHARACTER (ASCII #127)
 
 		xml = xml.replace(
-			/Tag(Boolean|Character|Compound|Double|Float|Int|List|Long|Short|String|Tiny)/gi,
+			/Tag(Boolean|Character|Compound|Double|Float|Int|List|Long|Short|String|Tiny|UUID)/gi,
 			function(m, t) {
 				return Enum.EnumTagType.GetEnum(t);
 			}
